@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>89K - Marbo 9K ของแท้ | Version 18</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Prompt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ใช้ฟอนต์ Prompt เป็นหลัก */
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #000000;
+        }
+        
+        /* สร้างเอฟเฟกต์พื้นหลังแบบไล่ระดับสีและมีดาวระยิบระยับ */
+        .main-container {
+            position: relative;
+            background: linear-gradient(145deg, #000000 0%, #1a0033 30%, #2d1b69 60%, #0d001a 100%);
+            overflow: hidden;
+        }
+
+        /* เอฟเฟกต์ดาวระยิบระยับ */
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: sparkle 8s linear infinite;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        /* สร้างเอฟเฟกต์เรืองแสงให้ปุ่มและบล็อก */
+        .glow-effect {
+            box-shadow: 0 0 8px rgba(167, 139, 250, 0.4), 
+                        0 0 16px rgba(167, 139, 250, 0.3), 
+                        0 0 24px rgba(167, 139, 250, 0.2);
+        }
+
+        .cta-glow {
+             box-shadow: 0 0 12px #34d399, 0 0 24px #34d399, 0 0 36px #a78bfa;
+        }
+        
+        .link-block {
+            background: rgba(23, 23, 35, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .link-block:hover::before {
+            left: 100%;
+        }
+
+        .link-block:hover {
+            transform: translateY(-4px) scale(1.01);
+            background: rgba(30, 30, 45, 0.8);
+            border-color: rgba(167, 139, 250, 0.6);
+            box-shadow: 0 12px 30px rgba(167, 139, 250, 0.2);
+        }
+        
+        /* สไตล์สำหรับปุ่มรสชาติ - Version 18 */
+        .flavor-card {
+             background: linear-gradient(135deg, rgba(30, 30, 45, 0.8), rgba(45, 27, 105, 0.6));
+             border: 1px solid rgba(255, 255, 255, 0.15);
+             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+             position: relative;
+             overflow: hidden;
+             backdrop-filter: blur(15px);
+             -webkit-backdrop-filter: blur(15px);
+        }
+        
+        .flavor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .flavor-card:hover::before {
+            left: 100%;
+        }
+        
+        .flavor-card:hover {
+            border-color: #34d399;
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(52, 211, 153, 0.25), 
+                        0 0 25px rgba(52, 211, 153, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(16, 185, 129, 0.1));
+        }
+        
+        .flavor-card:active {
+            transform: translateY(-3px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+        
+        .flavor-card.selected {
+            border-color: #34d399;
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.25), rgba(16, 185, 129, 0.15));
+            box-shadow: 0 12px 25px rgba(52, 211, 153, 0.35),
+                        0 0 35px rgba(52, 211, 153, 0.25),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px) scale(1.02);
+        }
+        
+        .flavor-emoji {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+        
+        .flavor-card:hover .flavor-emoji {
+            transform: scale(1.3) rotate(8deg);
+            filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.6));
+        }
+        
+        .flavor-card.selected .flavor-emoji {
+            transform: scale(1.2) rotate(3deg);
+            filter: drop-shadow(0 0 15px rgba(52, 211, 153, 0.8));
+        }
+        
+        .flavor-name {
+            transition: all 0.4s ease;
+        }
+        
+        .flavor-card:hover .flavor-name {
+            color: #34d399;
+            text-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
+            font-weight: 600;
+        }
+        
+        .flavor-card.selected .flavor-name {
+            color: #34d399;
+            font-weight: 700;
+            text-shadow: 0 0 12px rgba(52, 211, 153, 0.7);
+        }
+
+        /* เอฟเฟกต์แอนิเมชั่นสำหรับปุ่ม */
+        .pulse-animation {
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+
+        /* สไตล์สำหรับไอคอนโซเชียล - Version 18 */
+        .social-icon {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .social-icon:hover::before {
+            left: 100%;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* เอฟเฟกต์ควันสำหรับสินค้า - Version 18 */
+        .smoke-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 80%, rgba(167, 139, 250, 0.15) 0%, transparent 60%);
+            animation: smokeFloat 5s ease-in-out infinite;
+        }
+
+        .smoke-effect::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, transparent 75%);
+            border-radius: 50%;
+            animation: smokePulse 4s ease-in-out infinite alternate;
+        }
+
+        .smoke-effect::after {
+            content: '';
+            position: absolute;
+            top: 25%;
+            right: 20%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: smokePulse 3.5s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes smokeFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(1) rotate(0deg);
+                opacity: 0.4;
+            }
+            33% { 
+                transform: translateY(-8px) scale(1.03) rotate(1deg);
+                opacity: 0.6;
+            }
+            66% { 
+                transform: translateY(-12px) scale(1.05) rotate(-1deg);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes smokePulse {
+            0% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            100% { 
+                transform: scale(1.3) rotate(2deg);
+                opacity: 0.6;
+            }
+        }
+
+        /* เอฟเฟกต์พิเศษสำหรับรูปสินค้า - Version 18 Enhanced */
+        .product-showcase {
+            position: relative;
+            overflow: visible;
+        }
+
+        .product-image {
+            position: relative;
+            z-index: 10;
+            filter: drop-shadow(0 0 15px rgba(167, 139, 250, 0.6)) 
+                    drop-shadow(0 0 25px rgba(52, 211, 153, 0.4))
+                    drop-shadow(0 0 35px rgba(79, 172, 254, 0.3));
+            animation: floatProduct 6s ease-in-out infinite;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-image:hover {
+            transform: scale(1.05) rotate(2deg);
+            filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.8)) 
+                    drop-shadow(0 0 35px rgba(52, 211, 153, 0.6))
+                    drop-shadow(0 0 50px rgba(79, 172, 254, 0.4));
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseBig {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes floatProduct {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% { 
+                transform: translateY(-8px) rotate(1deg);
+            }
+            50% { 
+                transform: translateY(-12px) rotate(0deg);
+            }
+            75% { 
+                transform: translateY(-8px) rotate(-1deg);
+            }
+        }
+
+        /* Version 18 - เอฟเฟกต์ใหม่ */
+        .version-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        /* กราฟยอดขาย Version 18 */
+        .sales-bar {
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sales-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Header Profile Version 18 */
+        .profile-container {
+            position: relative;
+        }
+
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #ff6b6b);
+            border-radius: 50%;
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Notification Version 18 */
+        .notification-v18 {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.95), rgba(16, 185, 129, 0.95));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(52, 211, 153, 0.3);
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <div class="main-container min-h-screen">
+        <div class="container mx-auto max-w-lg p-4">
+            
+
+            
+            <!-- ส่วน Header: Profile & Bio -->
+            <header class="text-center py-6 flex flex-col items-center">
+                <div class="profile-container">
+                    <div class="w-28 h-28 rounded-full mb-4 glow-effect overflow-hidden border-3 border-white shadow-2xl">
+                        <img src="https://uploads.onecompiler.io/43k32n4ge/43sygtsud/Marbo-M-%E9%80%8F%E6%98%8E-02.png" alt="89K Marbo Profile" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Profile image failed to load'; this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-5xl font-bold text-white flex items-center justify-center h-full bg-gradient-to-br from-purple-600 via-blue-500 to-green-400\'>89K</span>';">
+                    </div>
+                </div>
+                <h1 class="text-3xl font-bold tracking-wider bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">@89K</h1>
+                <div class="mt-6 text-sm text-gray-200 space-y-3 px-4">
+                    <div class="flex items-center justify-center space-x-2">
+                        <i class="fas fa-wind text-blue-400"></i>
+                        <p>💨 กลิ่นหอม เย็นชัด ฟีลแน่น ราคาดี</p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2">
+                        <i class="fas fa-box text-orange-400"></i>
+                        <p>📦 เก็บปลายทาง มีคลิปก่อนแพ็ค</p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2">
+                        <i class="fas fa-certificate text-green-400"></i>
+                        <p>✅ ของแท้ 100% ส่งจริง ส่งไว</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ส่วนของเนื้อหาหลัก: ลิงก์และโปรโมชั่น -->
+            <main class="space-y-6">
+
+                <!-- ส่วนแสดงสินค้า Marbo 9K -->
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Marbo 9K ของแท้</h2>
+                    
+                    <!-- ส่วนแสดงสินค้าตรงกลาง -->
+                    <div class="relative mb-8 p-8">
+                        <!-- เอฟเฟกต์ควันรอบๆ สินค้า -->
+                        <div class="absolute inset-0 pointer-events-none">
+                            <div class="smoke-effect opacity-40"></div>
+                        </div>
+                        
+                        <!-- รูปสินค้า Marbo 9K -->
+                        <div class="relative z-10 flex flex-col items-center">
+                            <div class="w-72 h-72 mb-6 relative product-showcase">
+                                <img src="https://uploads.onecompiler.io/43k32n4ge/43sygtsud/%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7%E0%B8%97%E0%B8%B4%E0%B9%89%E0%B8%87-2025-marbo-9k-removebg-preview.png" 
+                                     alt="Marbo 9K ของแท้" 
+                                     class="w-full h-full object-contain product-image"
+                                     onerror="this.src=''; this.alt='Product image failed to load'; this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-8xl mb-4\'>💨</div>';">
+                            </div>
+                            <p class="text-xl text-purple-300 font-medium">Premium Vape Experience</p>
+                            <p class="text-sm text-gray-400 mt-2">เลือกรสชาติที่ใช่สำหรับคุณ</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-xl text-purple-300 mb-6 font-medium">🎯 เลือกรสชาติที่ชอบ</p>
+                    <div id="selectedFlavor" class="text-sm text-gray-300 bg-gray-800 bg-opacity-50 rounded-xl p-4 backdrop-blur-sm">👆 กดเลือกรสชาติที่ต้องการ</div>
+                </div>
+
+                <!-- กริดรสชาติทั้งหมด - Version 18 Enhanced -->
+                <div class="grid grid-cols-2 gap-5 mb-8">
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Cola" data-description="รสสัมผัสเหมือนโคล่าแบบเป๊ะ ๆ">
+                        <div class="flavor-emoji text-3xl mb-3">🥤</div>
+                        <p class="flavor-name text-sm font-medium">Cola</p>
+                        <p class="text-xs text-gray-400 mt-2">โคล่า</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Peach" data-description="กลิ่นชัด ได้กลิ่นของผลไม้พีชอย่างเต็มที่">
+                        <div class="flavor-emoji text-3xl mb-3">🍑</div>
+                        <p class="flavor-name text-sm font-medium">Peach</p>
+                        <p class="text-xs text-gray-400 mt-2">พีช</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Grape" data-description="หวานในแบบขององุ่น รสดีไม่มีใครเทียบ">
+                        <div class="flavor-emoji text-3xl mb-3">🍇</div>
+                        <p class="flavor-name text-sm font-medium">Grape</p>
+                        <p class="text-xs text-gray-400 mt-2">องุ่น</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Grape Aloe" data-description="หอมหวานไม่เหมือนใคร">
+                        <div class="flavor-emoji text-3xl mb-3">🍇🌿</div>
+                        <p class="flavor-name text-sm font-medium">Grape Aloe</p>
+                        <p class="text-xs text-gray-400 mt-2">องุ่นว่านหางจระเข้</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Grape Lychee" data-description="มีถึง 2 รสชาติในกลิ่นเดียว">
+                        <div class="flavor-emoji text-3xl mb-3">🍇🍈</div>
+                        <p class="flavor-name text-sm font-medium">Grape Lychee</p>
+                        <p class="text-xs text-gray-400 mt-2">องุ่นลิ้นจี่</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Blue Ice" data-description="เปรี้ยวหวานอย่างลงตัว เย็นชื่นใจ">
+                        <div class="flavor-emoji text-3xl mb-3">🫐❄️</div>
+                        <p class="flavor-name text-sm font-medium">Blue Ice</p>
+                        <p class="text-xs text-gray-400 mt-2">บลูเบอร์รี่</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Watermelon" data-description="หวานหอมตามแบบฉบับของแตงโม">
+                        <div class="flavor-emoji text-3xl mb-3">🍉</div>
+                        <p class="flavor-name text-sm font-medium">Watermelon</p>
+                        <p class="text-xs text-gray-400 mt-2">แตงโม</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Watermelon Bubblegum" data-description="มีความสดชื่นของแตงโม กับความหวานละมุนของบับเบิ้ลกั๊ม">
+                        <div class="flavor-emoji text-3xl mb-3">🍉🍬</div>
+                        <p class="flavor-name text-sm font-medium">Watermelon Bubblegum</p>
+                        <p class="text-xs text-gray-400 mt-2">แตงโมบับเบิ้ลกั๊ม</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Sparkling Lemon" data-description="กลิ่นดี มีความแปลกใหม่">
+                        <div class="flavor-emoji text-3xl mb-3">🍋✨</div>
+                        <p class="flavor-name text-sm font-medium">Sparkling Lemon</p>
+                        <p class="text-xs text-gray-400 mt-2">น้ำแร่มะนาว</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Rainbow Candy" data-description="หวานหอมอร่อย รสชาติดีเลิศ">
+                        <div class="flavor-emoji text-3xl mb-3">🌈🍭</div>
+                        <p class="flavor-name text-sm font-medium">Rainbow Candy</p>
+                        <p class="text-xs text-gray-400 mt-2">ขนมหวาน</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Strawberry" data-description="หอมหวานแบบมีเอกลักษณ์">
+                        <div class="flavor-emoji text-3xl mb-3">🍓</div>
+                        <p class="flavor-name text-sm font-medium">Strawberry</p>
+                        <p class="text-xs text-gray-400 mt-2">สตรอว์เบอร์รี่</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Mix Berry" data-description="รวมผลไม้ตระกูลเบอร์รี่ มีถึง 3 รสชาติ">
+                        <div class="flavor-emoji text-3xl mb-3">🍓🫐🍇</div>
+                        <p class="flavor-name text-sm font-medium">Mix Berry</p>
+                        <p class="text-xs text-gray-400 mt-2">มิกซ์เบอร์รี่</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Double Mint" data-description="หอมหวานแบบหมากฝรั่งดับเบิ้ลมิ้นท์">
+                        <div class="flavor-emoji text-3xl mb-3">🍃🍃</div>
+                        <p class="flavor-name text-sm font-medium">Double Mint</p>
+                        <p class="text-xs text-gray-400 mt-2">ดับเบิ้ลมิ้นท์</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Orange Sour" data-description="กลิ่นส้มชัด แถมยังมาพร้อมกับความซ่าในตัว">
+                        <div class="flavor-emoji text-3xl mb-3">🍊💥</div>
+                        <p class="flavor-name text-sm font-medium">Orange Sour</p>
+                        <p class="text-xs text-gray-400 mt-2">ส้มโซดา</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Apple Aloe" data-description="รสชาติดี มีเอกลักษณ์ไม่เหมือนใคร">
+                        <div class="flavor-emoji text-3xl mb-3">🍎🌿</div>
+                        <p class="flavor-name text-sm font-medium">Apple Aloe</p>
+                        <p class="text-xs text-gray-400 mt-2">แอปเปิ้ลว่านหางจระเข้</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Sour Gummy" data-description="มีทั้งความหวานและความเปรี้ยวรวมกัน">
+                        <div class="flavor-emoji text-3xl mb-3">🐻💥</div>
+                        <p class="flavor-name text-sm font-medium">Sour Gummy</p>
+                        <p class="text-xs text-gray-400 mt-2">กัมมี่เปรี้ยว</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Pink Berry" data-description="มีความหวานอมเปรี้ยวของเบอร์รี่หลายชนิดผสมกันอย่างลงตัว">
+                        <div class="flavor-emoji text-3xl mb-3">🩷🍓</div>
+                        <p class="flavor-name text-sm font-medium">Pink Berry</p>
+                        <p class="text-xs text-gray-400 mt-2">พิงค์เบอร์รี่</p>
+                    </div>
+                    <div class="flavor-card p-5 rounded-2xl text-center cursor-pointer" data-flavor="Peach Strawberry" data-description="มีความหวานหอมของพีช ความหวานอมเปรี้ยวของสตรอว์เบอร์รี่">
+                        <div class="flavor-emoji text-3xl mb-3">🍑🍓</div>
+                        <p class="flavor-name text-sm font-medium">Peach Strawberry</p>
+                        <p class="text-xs text-gray-400 mt-2">พีชสตรอว์เบอร์รี่</p>
+                    </div>
+                </div>
+
+                <!-- บล็อกลิงก์: สินค้าขายดี - Version 18 -->
+                <div class="p-6 rounded-3xl link-block">
+                    <div class="text-center mb-6">
+                        <div class="flex items-center justify-center space-x-3 mb-3">
+                            <i class="fas fa-fire text-orange-400 text-2xl"></i>
+                            <span class="text-xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">🔥 สินค้าขายดี - Marbo 9K</span>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-full inline-block font-bold text-lg">
+                            ราคา 390 บาท
+                        </div>
+                    </div>
+                    
+                    <!-- กราฟยอดขาย Version 18 -->
+                    <div class="bg-gray-900 bg-opacity-60 rounded-2xl p-6 backdrop-blur-sm">
+                        <h4 class="text-lg font-bold text-purple-300 mb-4 text-center">📊 ยอดขายรายรสชาติ (7 วันที่ผ่านมา)</h4>
+                        <div id="salesChart" class="space-y-3">
+                            <!-- กราฟจะถูกสร้างด้วย JavaScript -->
+                        </div>
+                        <div class="text-xs text-gray-400 text-center mt-4 flex items-center justify-center space-x-2">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>* ข้อมูลอัปเดตทุกวัน</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ข้อมูลการติดต่อ - Version 18 -->
+                <div class="mt-8 p-6 rounded-3xl link-block">
+                    <h3 class="text-xl font-bold text-center mb-6 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">📞 ติดต่อสั่งซื้อ</h3>
+                    <div class="space-y-4">
+                        <button onclick="openLineOA()" class="flex items-center justify-center space-x-3 p-4 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-300 social-icon w-full text-lg font-medium">
+                            <i class="fab fa-line text-2xl"></i>
+                            <span>Line OA: @089obcli</span>
+                        </button>
+                        <button onclick="openFacebook()" class="flex items-center justify-center space-x-3 p-4 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-300 social-icon w-full text-lg font-medium">
+                            <i class="fab fa-facebook text-2xl"></i>
+                            <span>Facebook: 89k</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- รีวิวจากลูกค้า - Version 18 -->
+                <div class="mt-6 p-6 rounded-3xl link-block">
+                    <h3 class="text-xl font-bold text-center mb-6 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">⭐ รีวิวจากลูกค้าจริง</h3>
+                    
+                    <!-- คะแนนรวม -->
+                    <div class="text-center mb-6 p-4 bg-gradient-to-r from-yellow-900 to-orange-900 bg-opacity-30 rounded-2xl backdrop-blur-sm border border-yellow-500 border-opacity-20">
+                        <div class="text-3xl font-bold text-yellow-400 mb-2" id="overallRating">4.8</div>
+                        <div class="flex justify-center mb-2" id="overallStars">
+                            <!-- ดาวจะถูกสร้างด้วย JavaScript -->
+                        </div>
+                        <div class="text-sm text-gray-300">จาก <span id="totalReviews">247</span> รีวิว</div>
+                    </div>
+
+                    <!-- รีวิวแต่ละรายการ -->
+                    <div id="reviewsContainer" class="space-y-4 max-h-[600px] overflow-y-auto">
+                        <!-- รีวิวจะถูกสร้างด้วย JavaScript -->
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button onclick="loadMoreReviews()" class="px-6 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 rounded-full text-white font-medium transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-sync-alt mr-2"></i>
+                            โหลดรีวิวใหม่
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ข้อมูลการจัดส่ง - Version 18 -->
+                <div class="mt-6 p-6 rounded-3xl link-block">
+                    <h3 class="text-xl font-bold text-center mb-6 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">🚚 ข้อมูลการจัดส่ง</h3>
+                    <div class="grid grid-cols-1 gap-4 text-sm text-gray-200">
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 bg-opacity-40 rounded-xl backdrop-blur-sm">
+                            <i class="fas fa-check-circle text-green-400 text-lg"></i>
+                            <span>ส่งฟรี เก็บเงินปลายทาง</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 bg-opacity-40 rounded-xl backdrop-blur-sm">
+                            <i class="fas fa-percentage text-orange-400 text-lg"></i>
+                            <span>รับส่วนลดพิเศษ เมื่อโอนชำระ</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 bg-opacity-40 rounded-xl backdrop-blur-sm">
+                            <i class="fas fa-clock text-blue-400 text-lg"></i>
+                            <span>จัดส่งภายใน 3-5 วัน</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 bg-opacity-40 rounded-xl backdrop-blur-sm">
+                            <i class="fas fa-shield-alt text-purple-400 text-lg"></i>
+                            <span>รับประกันของแท้ 100%</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 bg-opacity-40 rounded-xl backdrop-blur-sm">
+                            <i class="fas fa-video text-yellow-400 text-lg"></i>
+                            <span>มีคลิปก่อนแพ็คทุกออเดอร์</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 bg-opacity-40 rounded-xl backdrop-blur-sm">
+                            <i class="fas fa-star text-pink-400 text-lg"></i>
+                            <span>รีวิวเพียบ เครดิตแน่น</span>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- Footer - Version 18 -->
+            <footer class="text-center py-8 mt-12">
+                <div class="bg-gray-900 bg-opacity-50 rounded-2xl p-6 backdrop-blur-sm">
+                    <p class="text-sm text-gray-400 mb-2">© 2024 89K Vape - ของแท้ ราคาดี ส่งไว</p>
+                    <p class="text-xs text-gray-500">⚠️ สินค้านี้มีนิโคติน เสพติดและมีโทษต่อสุขภาพ</p>
+
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        // Version 18 - Enhanced JavaScript
+
+        // เพิ่มเอฟเฟกต์คลิกให้กับลิงก์
+        document.querySelectorAll('.link-block').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // สร้างเอฟเฟกต์ ripple Version 18
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(167, 139, 250, 0.8)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '30px';
+                ripple.style.height = '30px';
+                ripple.style.marginLeft = '-15px';
+                ripple.style.marginTop = '-15px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 800);
+                
+                // แสดงข้อความแจ้งเตือน Version 18
+                showNotification('🛒 กำลังเปิดหน้าสั่งซื้อ...', 'purple');
+            });
+        });
+
+        // ฟังก์ชันแสดงการแจ้งเตือน Version 18
+        function showNotification(message, color = 'green') {
+            const notification = document.createElement('div');
+            notification.innerHTML = message;
+            notification.className = `notification-v18 fixed top-6 left-1/2 transform -translate-x-1/2 text-white px-6 py-3 rounded-2xl z-50 text-sm font-medium`;
+            document.body.appendChild(notification);
+            
+            // Animation entrance
+            notification.style.opacity = '0';
+            notification.style.transform = 'translate(-50%, -20px) scale(0.9)';
+            
+            setTimeout(() => {
+                notification.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                notification.style.opacity = '1';
+                notification.style.transform = 'translate(-50%, 0) scale(1)';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translate(-50%, -20px) scale(0.9)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 400);
+            }, 2500);
+        }
+
+        // เพิ่ม CSS สำหรับ ripple effect Version 18
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(5);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ฟังก์ชันสำหรับเปิด Line OA - Version 18
+        function openLineOA() {
+            showNotification('💬 กำลังเปิด Line OA...', 'green');
+            
+            setTimeout(() => {
+                window.open('https://line.me/R/ti/p/@089obcli?oat_content=qr', '_blank');
+                showNotification('✅ เปิด Line OA แล้ว!', 'green');
+            }, 600);
+        }
+
+        // ฟังก์ชันสำหรับเปิด Facebook - Version 18
+        function openFacebook() {
+            showNotification('📘 กำลังเปิด Facebook...', 'blue');
+            
+            setTimeout(() => {
+                window.open('https://www.facebook.com/share/1794ZSPnPd/?mibextid=wwXIfr', '_blank');
+                showNotification('✅ เปิด Facebook แล้ว!', 'blue');
+            }, 600);
+        }
+
+        // สร้างกราฟยอดขาย Version 18 - Enhanced
+        function createSalesChart() {
+            const flavors = [
+                { name: 'Grape', emoji: '🍇', color: 'bg-gradient-to-r from-purple-500 to-purple-600' },
+                { name: 'Watermelon', emoji: '🍉', color: 'bg-gradient-to-r from-green-500 to-green-600' },
+                { name: 'Blue Ice', emoji: '🫐', color: 'bg-gradient-to-r from-blue-500 to-blue-600' },
+                { name: 'Peach', emoji: '🍑', color: 'bg-gradient-to-r from-orange-500 to-orange-600' },
+                { name: 'Mix Berry', emoji: '🍓', color: 'bg-gradient-to-r from-red-500 to-red-600' },
+                { name: 'Cola', emoji: '🥤', color: 'bg-gradient-to-r from-yellow-600 to-yellow-700' },
+                { name: 'Double Mint', emoji: '🍃', color: 'bg-gradient-to-r from-green-400 to-green-500' },
+                { name: 'Rainbow Candy', emoji: '🌈', color: 'bg-gradient-to-r from-pink-500 to-pink-600' }
+            ];
+
+            const chartContainer = document.getElementById('salesChart');
+            chartContainer.innerHTML = '';
+
+            // สร้างข้อมูลยอดขายแบบสุ่ม
+            const salesData = flavors.map(flavor => ({
+                ...flavor,
+                sales: Math.floor(Math.random() * 60) + 15 // ยอดขาย 15-75 ชิ้น
+            }));
+
+            // เรียงลำดับตามยอดขาย
+            salesData.sort((a, b) => b.sales - a.sales);
+
+            // หาค่าสูงสุดเพื่อคำนวณความกว้างของแท่ง
+            const maxSales = Math.max(...salesData.map(item => item.sales));
+
+            salesData.forEach((item, index) => {
+                const percentage = (item.sales / maxSales) * 100;
+                
+                const chartItem = document.createElement('div');
+                chartItem.className = 'flex items-center space-x-3 text-sm';
+                
+                chartItem.innerHTML = `
+                    <div class="flex items-center space-x-2 w-24">
+                        <span class="text-lg">${item.emoji}</span>
+                        <span class="text-gray-200 text-sm font-medium truncate">${item.name}</span>
+                    </div>
+                    <div class="flex-1 bg-gray-700 rounded-full h-4 relative overflow-hidden">
+                        <div class="sales-bar ${item.color} h-full rounded-full transition-all duration-1500 ease-out" 
+                             style="width: 0%" 
+                             data-width="${percentage}%"></div>
+                    </div>
+                    <div class="text-gray-200 text-sm font-bold w-10 text-right">${item.sales}</div>
+                    ${index === 0 ? '<span class="text-yellow-400 text-lg">👑</span>' : ''}
+                `;
+                
+                chartContainer.appendChild(chartItem);
+            });
+
+            // แอนิเมชันแท่งกราฟ Version 18
+            setTimeout(() => {
+                document.querySelectorAll('[data-width]').forEach((bar, index) => {
+                    setTimeout(() => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    }, index * 100);
+                });
+            }, 200);
+        }
+
+        // สร้างกราฟเมื่อโหลดหน้า
+        document.addEventListener('DOMContentLoaded', function() {
+            createSalesChart();
+            
+            // อัปเดตกราฟทุก 12 วินาที
+            setInterval(createSalesChart, 12000);
+        });
+
+        // เอฟเฟกต์สำหรับปุ่มรสชาติ Version 18
+        let selectedFlavorName = '';
+        document.querySelectorAll('.flavor-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // ลบการเลือกเก่า
+                document.querySelectorAll('.flavor-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                
+                // เพิ่มการเลือกใหม่
+                this.classList.add('selected');
+                
+                const flavor = this.getAttribute('data-flavor');
+                const description = this.getAttribute('data-description');
+                selectedFlavorName = flavor;
+                
+                // อัปเดตข้อความที่เลือก Version 18
+                const selectedDiv = document.getElementById('selectedFlavor');
+                selectedDiv.innerHTML = `
+                    <div class="flex items-center justify-center space-x-2 mb-2">
+                        <i class="fas fa-check-circle text-green-400"></i>
+                        <span class="text-green-400 font-bold">เลือกแล้ว: ${flavor}</span>
+                    </div>
+                    <p class="text-xs text-gray-300">${description}</p>
+                `;
+                selectedDiv.className = 'text-sm bg-gradient-to-r from-green-900 to-green-800 bg-opacity-50 rounded-2xl p-4 backdrop-blur-sm border border-green-500 border-opacity-30';
+                
+                // สร้างข้อความสำหรับส่งไป Line OA
+                const message = `สวัสดีครับ 🙏\n\nสนใจสั่งซื้อ Marbo 9K ของแท้\nรสชาติ: ${flavor}\nราคา: 390 บาท\n\n📦 ส่งฟรี เก็บเงินปลายทาง\n⏰ จัดส่งภายใน 3-5 วันทำงาน\n✅ รับประกันของแท้ 100%`;
+                
+                // แสดงการแจ้งเตือน Version 18
+                showNotification(`🍃 เลือกรสชาติ: ${flavor}`, 'green');
+                
+                // เปิด Line OA เพื่อเพิ่มเพื่อนอัตโนมัติ
+                setTimeout(() => {
+                    const lineOAUrl = `https://line.me/R/ti/p/@089obcli?oat_content=qr`;
+                    window.open(lineOAUrl, '_blank');
+                    showNotification('✅ เปิด Line OA แล้ว! กดเพิ่มเพื่อนและแชทได้เลย', 'green');
+                }, 1200);
+            });
+        });
+
+        // เอฟเฟกต์พิเศษ Version 18 - Particle Effect
+        function createParticles() {
+            const particleContainer = document.createElement('div');
+            particleContainer.style.position = 'fixed';
+            particleContainer.style.top = '0';
+            particleContainer.style.left = '0';
+            particleContainer.style.width = '100%';
+            particleContainer.style.height = '100%';
+            particleContainer.style.pointerEvents = 'none';
+            particleContainer.style.zIndex = '1';
+            document.body.appendChild(particleContainer);
+
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.style.position = 'absolute';
+                    particle.style.width = '4px';
+                    particle.style.height = '4px';
+                    particle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                    particle.style.borderRadius = '50%';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = '100%';
+                    particle.style.animation = `float-up 4s linear forwards`;
+                    
+                    particleContainer.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 4000);
+                }, i * 800);
+            }
+        }
+
+        // เพิ่ม CSS สำหรับ particle animation
+        const particleStyle = document.createElement('style');
+        particleStyle.textContent = `
+            @keyframes float-up {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(particleStyle);
+
+        // สร้าง particles ทุก 10 วินาที
+        setInterval(createParticles, 10000);
+        
+        // สร้าง particles ครั้งแรกหลังจาก 2 วินาที
+        setTimeout(createParticles, 2000);
+
+        // ระบบรีวิว Version 18 - Enhanced
+        const reviewTemplates = [
+            {
+                names: ['สมชาย ก.', 'สมหญิง ข.', 'นิรันดร์ ค.', 'วิชัย ง.', 'สุภาพ จ.', 'มานะ ฉ.', 'สุดา ช.', 'วิไล ซ.', 'ประยุทธ์ ฌ.', 'สมศรี ญ.', 'John S.', 'Sarah M.', 'David L.', 'Emma W.', 'Michael B.', 'Lisa K.', 'James R.', 'Anna T.', 'Robert H.', 'Maria G.', 'ธนากร ป.', 'พิมพ์ใจ ผ.', 'วรรณา ฝ.', 'สุรชัย พ.', 'นันทนา ฟ.', 'Alex C.', 'Sophie N.', 'Daniel V.', 'Jessica F.', 'Ryan P.', 'กิตติ ม.', 'สุนิสา ย.', 'ชัยวัฒน์ ร.', 'ปรียา ล.', 'Thomas A.', 'Rachel D.', 'Kevin J.', 'Michelle O.', 'Brandon Q.', 'Amanda Z.'],
+                positiveReviews: [
+                    'ของแท้มาก กลิ่นหอมชัด ควันเยอะ ส่งไว มาครบตามที่สั่ง 👍',
+                    'สั่งมา 3 ตัว ของแท้ทุกตัว กลิ่นตรงตามที่อยากได้ ร้านดีมาก',
+                    'ได้ของแล้ว ของแท้แน่นอน กลิ่นหอม ควันเยอะ จัดส่งเร็ว',
+                    'คุณภาพดีมาก ราคาดี ส่งไว บริการดี จะสั่งอีก',
+                    'ของแท้ 100% กลิ่นชัด ฟีลดี ร้านน่าเชื่อถือ',
+                    'สินค้าดีมาก แพ็คดี ส่งเร็ว ของแท้แน่นอน แนะนำเลย',
+                    'กลิ่นหอมมาก ควันเยอะ ใช้ได้นาน คุ้มค่าเงิน',
+                    'ส่งไวมาก ของแท้ กลิ่นตรงปก บริการดีเยี่ยม',
+                    'คุณภาพดี ราคาถูก ส่งเร็ว จะกลับมาซื้ออีก',
+                    'ของแท้มาก กลิ่นหอม ใช้ได้นาน ร้านดีมาก',
+                    'สั่งครั้งแรก ประทับใจมาก ของแท้ ส่งไว',
+                    'กลิ่นชัดมาก ควันเยอะ ฟีลดี แนะนำเลย',
+                    'บริการดีมาก ตอบเร็ว ส่งไว ของแท้แน่นอน',
+                    'คุณภาพเยี่ยม ราคาดี จัดส่งรวดเร็ว',
+                    'ของแท้ กลิ่นหอม ใช้ได้นาน คุ้มมาก',
+                    'ส่งไวมาก แพ็คดี ของแท้ 100% ประทับใจ',
+                    'กลิ่นตรงตามที่ต้องการ ควันเยอะ ฟีลดี',
+                    'ร้านดีมาก บริการเยี่ยม ของแท้ ส่งเร็ว',
+                    'คุณภาพดีเยี่ยม ราคาถูก จะสั่งอีก',
+                    'ของแท้แน่นอน กลิ่นหอม ส่งไว บริการดี'
+                ],
+                negativeReviews: [
+                    'ส่งช้ากว่าที่บอก แต่ของแท้ กลิ่นโอเค',
+                    'แพ็คเกจมีรอยขีดข่วนนิดหน่อย แต่ใช้ได้ปกติ',
+                    'กลิ่นไม่ชัดเท่าที่คิด แต่ก็ใช้ได้',
+                    'ราคาแพงไปหน่อย แต่ของแท้',
+                    'ส่งช้า 2 วัน แต่สินค้าโอเค',
+                    'คิดว่าจะหอมกว่านี้ แต่ก็ใช้ได้',
+                    'แพ็คธรรมดา ไม่มีอะไรพิเศษ',
+                    'ควันน้อยกว่าที่คาด แต่กลิ่นโอเค'
+                ],
+                flavors: ['Grape', 'Watermelon', 'Blue Ice', 'Peach', 'Mix Berry', 'Cola', 'Double Mint', 'Rainbow Candy', 'Strawberry', 'Grape Aloe', 'Grape Lychee', 'Watermelon Bubblegum', 'Sparkling Lemon', 'Orange Sour', 'Apple Aloe', 'Sour Gummy', 'Pink Berry', 'Peach Strawberry']
+            }
+        ];
+
+        function generateRandomReview() {
+            const template = reviewTemplates[0];
+            const name = template.names[Math.floor(Math.random() * template.names.length)];
+            const flavor = template.flavors[Math.floor(Math.random() * template.flavors.length)];
+            
+            // สร้างคะแนนแบบสุ่ม: 75% ได้ 5 ดาว, 20% ได้ 4 ดาว, 5% ได้ 2 ดาว
+            let rating;
+            let review;
+            const randomRating = Math.random();
+            if (randomRating < 0.75) {
+                rating = 5;
+                review = template.positiveReviews[Math.floor(Math.random() * template.positiveReviews.length)];
+            } else if (randomRating < 0.95) {
+                rating = 4;
+                review = template.positiveReviews[Math.floor(Math.random() * template.positiveReviews.length)];
+            } else {
+                rating = 2;
+                review = template.negativeReviews[Math.floor(Math.random() * template.negativeReviews.length)];
+            }
+            
+            const daysAgo = Math.floor(Math.random() * 30) + 1;
+            
+            return {
+                name: name,
+                review: review,
+                flavor: flavor,
+                rating: rating,
+                daysAgo: daysAgo,
+                verified: Math.random() < 0.95 // 95% เป็นการซื้อที่ยืนยันแล้ว
+            };
+        }
+
+        function createStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    stars += '<i class="fas fa-star text-yellow-400"></i>';
+                } else {
+                    stars += '<i class="far fa-star text-gray-400"></i>';
+                }
+            }
+            return stars;
+        }
+
+        function createReviewElement(reviewData) {
+            const reviewDiv = document.createElement('div');
+            reviewDiv.className = 'p-4 bg-gray-800 bg-opacity-40 rounded-xl backdrop-blur-sm border border-gray-600 border-opacity-30 hover:border-yellow-500 hover:border-opacity-50 transition-all duration-300';
+            
+            reviewDiv.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        ${reviewData.name.charAt(0)}
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="font-medium text-gray-200">${reviewData.name}</span>
+                                ${reviewData.verified ? '<i class="fas fa-check-circle text-green-400 text-sm" title="ซื้อแล้วยืนยัน"></i>' : ''}
+                            </div>
+                            <span class="text-xs text-gray-400">${reviewData.daysAgo} วันที่แล้ว</span>
+                        </div>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <div class="flex space-x-1">
+                                ${createStars(reviewData.rating)}
+                            </div>
+                            <span class="text-sm text-gray-300">รสชาติ: ${reviewData.flavor}</span>
+                        </div>
+                        <p class="text-sm text-gray-200 leading-relaxed">${reviewData.review}</p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-400">
+                            <button class="flex items-center space-x-1 hover:text-green-400 transition-colors">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>ช่วยได้ (${Math.floor(Math.random() * 15) + 1})</span>
+                            </button>
+                            <span>•</span>
+                            <span>การซื้อที่ยืนยันแล้ว</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return reviewDiv;
+        }
+
+        function loadReviews() {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = '';
+            
+            // สร้างรีวิว 20 รายการ
+            for (let i = 0; i < 20; i++) {
+                const reviewData = generateRandomReview();
+                const reviewElement = createReviewElement(reviewData);
+                
+                // เพิ่มแอนิเมชันเข้ามา
+                reviewElement.style.opacity = '0';
+                reviewElement.style.transform = 'translateY(20px)';
+                container.appendChild(reviewElement);
+                
+                setTimeout(() => {
+                    reviewElement.style.transition = 'all 0.5s ease';
+                    reviewElement.style.opacity = '1';
+                    reviewElement.style.transform = 'translateY(0)';
+                }, i * 100);
+            }
+        }
+
+        function updateOverallRating() {
+            // กำหนดคะแนนเป็น 4.9 ดาวคงที่
+            const rating = 4.9;
+            const totalReviews = Math.floor(Math.random() * 100) + 200; // 200-299 รีวิว
+            
+            document.getElementById('overallRating').textContent = rating;
+            document.getElementById('totalReviews').textContent = totalReviews;
+            
+            // สร้างดาวสำหรับคะแนนรวม
+            const starsContainer = document.getElementById('overallStars');
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            let starsHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= fullStars) {
+                    starsHTML += '<i class="fas fa-star text-yellow-400 text-lg"></i>';
+                } else if (i === fullStars + 1 && hasHalfStar) {
+                    starsHTML += '<i class="fas fa-star-half-alt text-yellow-400 text-lg"></i>';
+                } else {
+                    starsHTML += '<i class="far fa-star text-gray-400 text-lg"></i>';
+                }
+            }
+            starsContainer.innerHTML = starsHTML;
+        }
+
+        function loadMoreReviews() {
+            showNotification('🔄 กำลังโหลดรีวิวใหม่...', 'yellow');
+            
+            // แสดงแอนิเมชันโหลด
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>กำลังโหลด...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                loadReviews();
+                updateOverallRating();
+                button.innerHTML = originalText;
+                button.disabled = false;
+                showNotification('✅ โหลดรีวิวใหม่เรียบร้อย!', 'green');
+            }, 1500);
+        }
+
+        // โหลดรีวิวครั้งแรกเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', function() {
+            loadReviews();
+            updateOverallRating();
+            
+            // อัปเดตรีวิวทุก 2 นาที (120 วินาที)
+            setInterval(() => {
+                loadReviews();
+                updateOverallRating();
+            }, 120000);
+        });
+    </script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b5b00715794b58',t:'MTc1NDU1ODMxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
